@@ -74,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.sha }}-${{ github.run_id }}
-          path: dist
+          path: .output/public
           retention-days: 7
       - name: Webhook
         uses: diverta/workflow-webhook@v2
