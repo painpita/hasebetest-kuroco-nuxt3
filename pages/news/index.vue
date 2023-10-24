@@ -7,5 +7,8 @@
 </template>
 
 <script setup>
-const { data: count } = await useFetch('https://hasebetest.g.kuroco.app/rcms-api/1/news')
+const config = useRuntimeConfig()
+const { data: count } = await useFetch('/rcms-api/1/news',{
+  baseURL:config.public.apiBase
+})
 </script>
