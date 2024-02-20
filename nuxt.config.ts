@@ -6,4 +6,12 @@ export default defineNuxtConfig({
             apiBase: 'https://hasebetest.g.kuroco.app'
         }
     },
+
+    nitro: {
+        // FullStaticGeneration
+        prerender: {
+          crawlLinks: true,
+          routes: ['/', '/404.html', '/200.html'],
+        },
+      },
 })
