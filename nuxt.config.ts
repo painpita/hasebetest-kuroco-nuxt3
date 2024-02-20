@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from 'nuxt/config';
+
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     runtimeConfig: {
@@ -6,4 +8,12 @@ export default defineNuxtConfig({
             apiBase: 'https://hasebetest.g.kuroco.app'
         }
     },
+
+    nitro: {
+        // FullStaticGeneration
+        prerender: {
+          crawlLinks: true,
+          routes: ['/', '/404.html', '/200.html'],
+        },
+      },
 })
