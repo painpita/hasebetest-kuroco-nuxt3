@@ -12,5 +12,5 @@ const config = useRuntimeConfig();
 const { data: response } = await useFetch(`/rcms-api/1/newsdetail/${route.params.id}`,{
   baseURL:config.public.apiBase,
   credentials: 'include',
-});
+}, route.params.id);
 </script>
