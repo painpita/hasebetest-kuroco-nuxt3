@@ -13,5 +13,8 @@ const { data: response } = await useFetch(
   `${config.public.apiBase}/rcms-api/1/newsdetail/${route.params.id}`,
   {
     credentials: 'include',
-  });
+    key: route.params.id,
+  }
+);
+
 </script>
