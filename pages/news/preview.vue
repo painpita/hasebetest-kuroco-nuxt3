@@ -11,6 +11,7 @@
   const {data: response} = useFetch(`/rcms-api/1/news/preview`, {
     baseURL:config.public.apiBase,
     credentials: 'include',
+    server: false,
     params: {
       preview_token: route.query.preview_token,
     },
