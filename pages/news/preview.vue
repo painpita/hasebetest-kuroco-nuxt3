@@ -1,12 +1,10 @@
 <template>
-  <ClientOnly>
-    <div>
-      <h1 class="title">{{ response.details.subject }}</h1>
-      <div class="post" v-html="response.details.contents"></div>
-    </div>
-  </ClientOnly>
+  <div>
+    <h1 class="title">{{ response.details.subject }}</h1>
+    <div class="post" v-html="response.details.contents"></div>
+  </div>
 </template>
-  
+
 <script setup>
 const config = useRuntimeConfig();
 
