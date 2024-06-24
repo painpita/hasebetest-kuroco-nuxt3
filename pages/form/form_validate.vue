@@ -46,7 +46,7 @@
   const submitted = ref(false);
   const validated = ref(false);
   const submitData = ref({});
-  const error = ref(null);
+  const error = ref([]);
   const config = useRuntimeConfig();
   
   const handleOnValidate = async () => {
@@ -61,7 +61,7 @@
       validated.value = true;
       error.value = null;
     } catch (e) {
-      error.value = e.response.data.errors;
+      error.value = e.response._data.errors;
     }
   };
   
