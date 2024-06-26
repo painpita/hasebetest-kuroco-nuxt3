@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <p>News list page{{ this.$route.query.page }}</p>
-    <div v-for="n in response.list" :key="n.slug">
-      <nuxt-link :to="`/news_paginated/${n.topics_id}`">
+  <div v-if="response">
+    <h1>Paginated News list</h1>
+    <div v-if="response" v-for="n in response.list" :key="n.topics_id">
+      <nuxt-link :to="`/news/${n.topics_id}`">
         {{ n.ymd }} {{ n.subject }}
       </nuxt-link>
     </div>
-    <Pagenator v-bind="{ ...response.pageInfo }" @page-update="updatePage" />
+    <Pagenator
+      v-if="response"
+      v-bind="{ ...response.pageInfo }"
+      @page-update="updatePage"
+    />
   </div>
 </template>
 
@@ -24,7 +28,7 @@ async function updatePage(page) {
 }
 
 async function fetchNews(page) {
-  const res = await useFetch(`/rcms-api/1/news?pageID=${page}`, {
+  const res = await useFetch(`/rcms-api/1/news?_lang=ja&pageID=${page}`, {
     baseURL: config.public.apiBase,
     credentials: "include",
   }).then((res) => res.data.value);
