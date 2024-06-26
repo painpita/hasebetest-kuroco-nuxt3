@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>News list page{{ this.$route.query.page }}</p>
+    <p>News list page{{ currentPage }}</p>
     <div v-for="n in response.list" :key="n.slug">
       <nuxt-link :to="`/news_paginated/${n.topics_id}`">
         {{ n.ymd }} {{ n.subject }}
