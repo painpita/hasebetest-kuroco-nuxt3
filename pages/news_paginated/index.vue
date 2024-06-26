@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div v-if="response">
     <p>News list page{{ this.$route.query.page }}</p>
-    <div v-for="n in response.list" :key="n.slug">
+    <div v-if="response" v-for="n in response.list" :key="n.slug">
       <nuxt-link :to="`/news_paginated/${n.topics_id}`">
         {{ n.ymd }} {{ n.subject }}
       </nuxt-link>
     </div>
-    <Pagenator v-bind="{ ...response.pageInfo }" @page-update="updatePage" />
+    <Pagenator v-if="response" v-bind="{ ...response.pageInfo }" @page-update="updatePage" />
   </div>
 </template>
 
