@@ -1,10 +1,10 @@
 <template>
-    <div>
-      <h1 class="title">{{ response.details.subject }}</h1>
-      <div class="post" v-html="response.details.contents"></div>
-    </div>
+  <div>
+    <h1 class="title">{{ response.details.subject }}</h1>
+    <div class="post" v-html="response.details.contents"></div>
+  </div>
 </template>
-  
+
 <script setup>
 const route = useRoute();
 const config = useRuntimeConfig();
