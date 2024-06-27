@@ -29,6 +29,7 @@
         </li>
     </ul>
 </template>
+
 <script setup>
 const props = defineProps({
     pageNo: {
@@ -47,6 +48,7 @@ const refresh = (i) => {
     emit("pageUpdate", i);
 };
 </script>
+
 <style scoped>
 ul {
     list-style: none;
