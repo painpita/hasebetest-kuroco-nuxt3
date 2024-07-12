@@ -10,39 +10,19 @@
       <form @submit.prevent="registUser">
         <div>
           <label>name1</label>
-          <input
-            name="name1"
-            type="text"
-            :value="invitationRes.data.ext_info.name1"
-            disabled
-          />
+          <input name="name1" type="text" :value="invitationRes.data.ext_info.name1" disabled />
         </div>
         <div>
           <label>name2</label>
-          <input
-            name="name2"
-            type="text"
-            :value="invitationRes.data.ext_info.name2"
-            disabled
-          />
+          <input name="name2" type="text" :value="invitationRes.data.ext_info.name2" disabled />
         </div>
         <div>
           <label>email</label>
-          <input
-            name="email"
-            type="email"
-            :value="invitationRes.data.email"
-            disabled
-          />
+          <input name="email" type="email" :value="invitationRes.data.email" disabled />
         </div>
         <div>
           <label>login_pwd</label>
-          <input
-            v-model="login_pwd"
-            name="login_pwd"
-            type="password"
-            placeholder="login_pwd"
-          />
+          <input v-model="login_pwd" name="login_pwd" type="password" placeholder="login_pwd" />
         </div>
         <div>
           <button type="submit">Sign UP</button>
