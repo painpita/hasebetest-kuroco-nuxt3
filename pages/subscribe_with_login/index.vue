@@ -46,6 +46,7 @@ const subscribeSubmit = async () => {
   try {
     if (!currentUser.value.member_id) {
       resultMessage.value = "Please Login";
+      password.value = "";
     } else {
       const payload = {
         member_id: currentUser.value.member_id,
@@ -66,17 +67,21 @@ const subscribeSubmit = async () => {
 //Unsubscribe
 const unsubscribeSubmit = async () => {
   try {
-    const payload = {
-      member_id: currentUser.value.member_id,
-    };
-    // post data
-    const response = await $fetch(`/rcms-api/1/magazine_unsubscribe/1`, {
-      method: "POST",
-      baseURL: config.public.apiBase,
-      credentials: "include",
-      body: payload,
-    });
-    resultMessage.value = response.messages[0];
+    if (!currentUser.value.member_id) {
+      resultMessage.value = "Please Login";
+    } else {
+      const payload = {
+        member_id: currentUser.value.member_id,
+      };
+      // post data
+      const response = await $fetch(`/rcms-api/1/magazine_unsubscribe/1`, {
+        method: "POST",
+        baseURL: config.public.apiBase,
+        credentials: "include",
+        body: payload,
+      });
+      resultMessage.value = response.messages[0];
+    }
   } catch (error) {
     resultMessage.value = error.response._data.errors[0].message;
   }
