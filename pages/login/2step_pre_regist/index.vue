@@ -1,78 +1,80 @@
 <template>
-  <div v-if="!signupDone">
-    <p v-if="error" :style="{ color: 'red' }">
-      {{ error }}
-    </p>
-    <form @submit.prevent="signup">
-      <div>
-        <label>OTP</label>
-        <input v-model="otp" name="otp" type="text" placeholder="otp" />
-      </div>
-      <button type="submit">Sign up</button>
-    </form>
-    <div>
-      <button @click.prevent="sendOTP">Send authentication code</button>
-      <p v-if="sentOTP">One Time Password has been sent.</p>
+  <div>
+    <div v-if="!presignupDone">
+      <form @submit.prevent="signup">
+        <p v-if="error" :style="{ color: 'red' }">
+          {{ error }}
+        </p>
+
+        <div>
+          <label>name</label>
+          <input
+            v-model="user.name"
+            name="name"
+            type="text"
+            placeholder="name"
+          />
+        </div>
+        <div>
+          <label>tel</label>
+          <input v-model="user.tel" name="tel" type="text" placeholder="tel" />
+        </div>
+        <div>
+          <label>email</label>
+          <input
+            v-model="email"
+            name="email"
+            type="email"
+            placeholder="email"
+          />
+        </div>
+        <div>
+          <label>login_pwd</label>
+          <input
+            v-model="user.login_pwd"
+            name="login_pwd"
+            type="password"
+            placeholder="login_pwd"
+          />
+        </div>
+
+        <div>
+          <button type="submit">Sign up</button>
+        </div>
+      </form>
+    </div>
+    <div v-else-if="presignupDone">
+      Pre-registration is complete. Please check your email.
     </div>
   </div>
-  <div v-else-if="signupDone">Registration has been completed.</div>
 </template>
-
 <script setup>
 const config = useRuntimeConfig();
-const route = useRoute();
-const signupDone = ref(false);
-const sentOTP = ref(false);
-const otp = ref("");
+const presignupDone = ref(false);
+const email = ref(null);
+const user = ref({});
 const error = ref(null);
 
-const validate = ({ query }) => {
-  return /[!-~]{32}/.test(query.key);
-};
-
-onMounted(() => {
-  if (!validate(route)) {
-    throw createError({
-      statusCode: 404,
-      message: "Invalid Registration Key",
-      fatal: false,
-    });
-  }
-});
-
-const sendOTP = async () => {
-  try {
-    const payload = {
-      email_hash: route.query.key,
-    };
-    await $fetch("/rcms-api/1/set_and_send_otp", {
-      method: "POST",
-      baseURL: config.public.apiBase,
-      credentials: "include",
-      body: payload,
-    });
-    sentOTP.value = true;
-  } catch (err) {
-    error.value = err.response._data.errors[0].message;
-  }
-};
 const signup = async () => {
   try {
     const payload = {
-      email_hash: route.query.key,
-      otp: otp.value,
+      email: email.value,
+      ext_info: {
+        ...user.value,
+      },
     };
-    await $fetch("/rcms-api/1/check_otp_and_regist", {
+    // post data
+    // New Member Registration Request
+    await $fetch("/rcms-api/1/2step_member_invite", {
       method: "POST",
       baseURL: config.public.apiBase,
       credentials: "include",
       body: payload,
     });
-    console.log("signup done");
-    signupDone.value = true;
-  } catch (err) {
-    console.log(err.response._data.errors[0].message);
-    error.value = err.response._data.errors[0].message;
+    presignupDone.value = true;
+  } catch (e) {
+    console.error(e);
+    error.value = "An error has occurred.";
   }
 };
 </script>
