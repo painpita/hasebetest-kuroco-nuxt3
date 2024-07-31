@@ -19,10 +19,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRuntimeConfig } from '#app';
-import { useRouter, useRoute } from 'vue-router';
-
 const config = useRuntimeConfig();
 const router = useRouter();
 const route = useRoute();
