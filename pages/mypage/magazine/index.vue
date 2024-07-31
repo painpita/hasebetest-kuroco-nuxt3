@@ -2,27 +2,15 @@
   <div v-if="response">
     <h1>Update mail magazine</h1>
     <form>
-      <p v-if="resultMessage !== null" style="color: green">
-        {{ resultMessage }}
-      </p>
+      <p v-if="resultMessage !== null" style="color:green">{{ resultMessage }}</p>
 
       <div v-for="magazine in magazines" :key="magazine.id">
         <h2>{{ magazine.label }}</h2>
-        <input
-          type="radio"
-          :id="`s-${magazine.id}`"
-          :value="{ status: 'subscribe', id: magazine.id }"
-          v-model="submitData[magazine.key]"
-          @change="handleChange(magazine.key)"
-        />
+        <input type="radio" :id="`s-${magazine.id}`" :value="{ status: 'subscribe', id: magazine.id }"
+          v-model="submitData[magazine.key]" @change="handleChange(magazine.key)" />
         <label :for="`s-${magazine.id}`">Subscribe</label>
-        <input
-          type="radio"
-          :id="`u-${magazine.id}`"
-          :value="{ status: 'unsubscribe', id: magazine.id }"
-          v-model="submitData[magazine.key]"
-          @change="handleChange(magazine.key)"
-        />
+        <input type="radio" :id="`u-${magazine.id}`" :value="{ status: 'unsubscribe', id: magazine.id }"
+          v-model="submitData[magazine.key]" @change="handleChange(magazine.key)" />
         <label :for="`u-${magazine.id}`">Unsubscribe</label>
       </div>
     </form>
