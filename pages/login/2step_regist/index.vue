@@ -19,7 +19,12 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+import { useRuntimeConfig } from '#app';
+import { useRouter, useRoute } from 'vue-router';
+
 const config = useRuntimeConfig();
+const router = useRouter();
 const route = useRoute();
 const signupDone = ref(false);
 const sentOTP = ref(false);
@@ -32,11 +37,7 @@ const validate = ({ query }) => {
 
 onMounted(() => {
   if (!validate(route)) {
-    throw createError({
-      statusCode: 404,
-      message: "Invalid Registration Key",
-      fatal: false,
-    });
+    router.push({ path: '/404' });
   }
 });
 
@@ -56,6 +57,7 @@ const sendOTP = async () => {
     error.value = err.response._data.errors[0].message;
   }
 };
+
 const signup = async () => {
   try {
     const payload = {
