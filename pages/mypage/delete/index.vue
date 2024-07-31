@@ -1,13 +1,14 @@
 <template>
     <div v-if="response" class="l-container--wrap">
         <div v-if="!deleteDone">
-            Delete
-            <span style="font-weight: bold">{{ response.details.name1 }} {{ response.details.name2 }}</span>. Are you
+            Delete <span style="font-weight: bold">{{ response.details.name1 }} {{ response.details.name2 }}</span>. Are you
             sure you want to proceed?
             <button @click="deleteProfile">Proceed</button>
             <div v-if="error">{{ error }}</div>
         </div>
-        <div v-if="deleteDone">Profile deletion has been completed.</div>
+        <div v-if="deleteDone">
+            Profile deletion has been completed.
+        </div>
     </div>
 </template>
 
