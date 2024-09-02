@@ -5,3 +5,7 @@
     <nuxt-link :to="switchLocalePath('ja')">{{ $t("links.ja") }}</nuxt-link>
   </div>
 </template>
+
+<script>
+export default {};
+</script>

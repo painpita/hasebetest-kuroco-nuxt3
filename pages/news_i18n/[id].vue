@@ -1,10 +1,9 @@
 <template>
-  <div v-if="response">
+  <div>
     <LanguageSwitcher />
-    <h1>
-      {{ response.details.subject }}
-    </h1>
-    <div v-html="response.details.contents"></div>
+
+    <h1 class="title">{{ response.details.subject }}</h1>
+    <div class="post" v-html="response.details.contents"></div>
   </div>
 </template>
 

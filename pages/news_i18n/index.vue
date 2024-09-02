@@ -1,9 +1,10 @@
 <template>
-  <div v-if="response">
+  <div>
     <LanguageSwitcher />
-    <h1>News list</h1>
-    <div v-for="n in response.list" :key="n.topics_id">
-      <nuxt-link :to="localePath(`/news/${n.topics_id}`)">
+
+    <h1 class="title">{{ $t('news.title') }}</h1>
+    <div v-for="n in response.list" :key="n.slug">
+      <nuxt-link :to="localePath(`/${n.topics_id}`)">
         {{ n.ymd }} {{ n.subject }}
       </nuxt-link>
     </div>
