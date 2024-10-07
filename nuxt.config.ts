@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         // Public keys that are exposed to the client
         public: {
-            gcpKey: 'AIzaSyD6lSNis03Z03sdBsAIKvoXlM1StaFoJts',
+            gcpKey: 'AIzaSyDrza3d1NrlzYlH91Rc04m3xciXLWfUwMk',
             apiBase: 'https://hasebetest2.g.kuroco.app'
         }
     },
