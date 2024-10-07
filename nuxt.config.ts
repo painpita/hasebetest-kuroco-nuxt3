@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         // Public keys that are exposed to the client
         public: {
-            gcpKey: 'AIzaSyD6lSNis03Z03sdBsAIKvoXlM1StaFoJts',
+            gcpKey: process.env.GCP_KEY,
             apiBase: 'https://hasebetest2.g.kuroco.app'
         }
     },
@@ -28,9 +28,5 @@ export default defineNuxtConfig({
                 langDir: "locales/",
             },
         ],
-    ],
-
-    plugins: [
-        '@/plugins/vue3-google-maps.client'
     ],
 })
