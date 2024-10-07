@@ -17,6 +17,7 @@
           @click="mark($event)"
           @zoom_changed="setZoom"
           @maptypeid_changed="gmap_type = $event"
+          :api-key="key"
         >
           <AdvancedMarker
             v-if="markPlace"
@@ -34,7 +35,7 @@
 import { AdvancedMarker, GoogleMap } from "vue3-google-map";
 const route = useRoute();
 const config = useRuntimeConfig();
-const key = config.gcpKey;
+const key = config.public.gcpKey;
 console.log(config);
 console.log(config.public.gcpKey);
 console.log(key);
