@@ -6,6 +6,8 @@ on:
   issue_comment:
     types: [created, edited]
   workflow_dispatch:
+env:
+  GCP_KEY: ${{secrets.GCP_KEY}}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
