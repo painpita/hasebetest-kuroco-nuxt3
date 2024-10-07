@@ -29,8 +29,4 @@ export default defineNuxtConfig({
             },
         ],
     ],
-
-    plugins: [
-        '@/plugins/vue3-google-maps.client'
-    ],
 })
