@@ -36,9 +36,6 @@ import { AdvancedMarker, GoogleMap } from "vue3-google-map";
 const route = useRoute();
 const config = useRuntimeConfig();
 const key = config.public.gcpKey;
-console.log(config);
-console.log(config.public.gcpKey);
-console.log(key);
 const gmap = ref(null);
 const mapCenter = ref({ lat: 35.66107078220203, lng: 139.7584319114685 });
 const markPlace = ref(null);
@@ -94,60 +91,10 @@ const gmap_type = computed({
     contents.value.gmap.gmap_type = val;
   },
 });
-function setPlace(place) {
-  if (place.geometry) {
-    markPlace.value = {
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng(),
-    };
-    if (place.geometry.viewport) {
-      gmap.value.fitBounds(place.geometry.viewport);
-    } else {
-      gmap.value.panTo(place.geometry.location);
-    }
-  }
-}
-function mark(event) {
-  markPlace.value = {
-    lat: event.latLng.lat(),
-    lng: event.latLng.lng(),
-  };
-}
 function mapClicked(event) {
   // console.log("mapCLicked", { event });
 }
 function setZoom() {
   contents.value.gmap.gmap_zoom = gmap.value.zoom;
-}
-async function update() {
-  const params = {
-    gmap: {
-      gmap_x: "",
-      gmap_y: "",
-      gmap_zoom: contents.value?.gmap?.gmap_zoom || "15",
-      gmap_type: contents.value?.gmap?.gmap_type || "roadmap",
-    },
-  };
-  if (markPlace.value) {
-    params.gmap.gmap_x = String(markPlace.value.lng);
-    params.gmap.gmap_y = String(markPlace.value.lat);
-  }
-  try {
-    const response = await $fetch(
-      "/rcms-api/1/update_news/" + route.params.id,
-      {
-        method: "POST",
-        credentials: "include",
-        baseURL: config.public.apiBase,
-        body: params,
-      }
-    );
-    // console.log(response);
-    if (response.data.errors?.length) {
-      console.log(response.data.errors);
-    }
-    errors.value = [];
-  } catch (error) {
-  }
 }
 </script>
