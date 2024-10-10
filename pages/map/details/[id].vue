@@ -2,8 +2,6 @@
   <div v-if="data" class="container">
     <h3>Map (Google Maps)</h3>
     <div>
-      The position that is set changes when you click on the map. You can also
-      set the zoom and other states.
     </div>
     <form id="topics_edit" @submit.prevent="update">
       <div>
@@ -45,7 +43,6 @@ const markerOptions = computed(() => ({
 }));
 const id = ref(route.params.id);
 const contents = ref({});
-const errors = ref([]);
 const MAP_ID = "DEMO_MAP_ID";
 console.log("googleMap", gmap.value);
 const { data } = await useAsyncData("mapDetails", async () => {
