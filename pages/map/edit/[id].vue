@@ -111,7 +111,7 @@ async function update() {
     gmap: {
       gmap_x: "",
       gmap_y: "",
-      gmap_zoom: contents.value?.gmap?.gmap_zoom || "15",
+      gmap_zoom: String(contents.value?.gmap?.gmap_zoom) || "15",
       gmap_type: contents.value?.gmap?.gmap_type || "roadmap",
     },
   };
