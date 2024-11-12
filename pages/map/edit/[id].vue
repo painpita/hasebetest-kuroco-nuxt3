@@ -99,7 +99,6 @@ function mark(event) {
     lat: event.latLng.lat(),
     lng: event.latLng.lng(),
   };
-  update()
 }
 
 function setZoom() {
@@ -134,7 +133,6 @@ async function update() {
       console.log(response.data.errors);
     }
     errors.value = [];
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 </script>
