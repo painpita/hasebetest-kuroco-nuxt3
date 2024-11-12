@@ -99,11 +99,11 @@ function mark(event) {
     lat: event.latLng.lat(),
     lng: event.latLng.lng(),
   };
-  update()
+  update();
 }
 
 function setZoom() {
-  contents.value.gmap.gmap_zoom = gmap.value.zoom;
+  contents.value.gmap.gmap_zoom = gmap.value.map.zoom;
 }
 
 async function update() {
@@ -134,7 +134,6 @@ async function update() {
       console.log(response.data.errors);
     }
     errors.value = [];
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 </script>
