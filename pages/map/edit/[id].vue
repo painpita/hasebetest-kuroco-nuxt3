@@ -102,7 +102,7 @@ function mark(event) {
 }
 
 function setZoom() {
-  contents.value.gmap.gmap_zoom = gmap.value.zoom;
+  contents.value.gmap.gmap_zoom = gmap.value.map.zoom;
 }
 
 async function update() {
@@ -110,7 +110,7 @@ async function update() {
     gmap: {
       gmap_x: "",
       gmap_y: "",
-      gmap_zoom: contents.value?.gmap?.gmap_zoom || "15",
+      gmap_zoom: String(contents.value?.gmap?.gmap_zoom) || "15",
       gmap_type: contents.value?.gmap?.gmap_type || "roadmap",
     },
   };
