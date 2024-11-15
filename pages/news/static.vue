@@ -10,5 +10,6 @@
 </template>
 
 <script setup>
-const { data: response } = await useFetch('/rcms-api/48/news/list');
+const { $customFetch } = useNuxtApp()
+const { data: response } = await $customFetch('/api/endpoint');
 </script>
