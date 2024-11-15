@@ -11,5 +11,5 @@
 
 <script setup>
 const { $customFetch } = useNuxtApp()
-const { data: response } = await $customFetch('/api/endpoint');
+const { data: response } = await $customFetch('/rcms-api/48/news/list');
 </script>
