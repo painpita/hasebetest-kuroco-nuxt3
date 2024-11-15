@@ -1,16 +1,12 @@
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig()
-    return {
-      provide: {
-        customFetch: (url: string, options = {}) => {
-          return useFetch(url, {
-            baseURL: config.public.apiBase as string,
-            headers: {
-              'x-rcms-api-access-token': config.public.staticToken as string
-            },
-            ...options
-          })
-        }
+    nuxtApp.hooks.hook('fetch:created', (options) => {
+      // baseURLの設定
+      options.baseURL = options.baseURL || config.public.apiBaseUrl
+      // ヘッダーの設定
+      options.headers = {
+        ...options.headers,
+        'x-rcms-api-access-token': config.public.staticToken
       }
-    }
+    })
   })
